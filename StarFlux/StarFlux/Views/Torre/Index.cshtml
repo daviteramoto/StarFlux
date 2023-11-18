@@ -1,4 +1,8 @@
 ﻿@model List<TorreViewModel>
+@{
+    ViewData["Title"] = "Torres";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <body onload="buscaTorres()">
     <fieldset id="areaFiltroTorres" class="form-group">
@@ -14,13 +18,14 @@
             </div>
             <div class="col-lg-1">
                 <br />
-                <input type="button" id="btnFiltroTorres" class="btn btn-success" value="Aplicar"
+                <input type="button" id="btnFiltroTorres" class="btn btn-info" value="Aplicar"
                        onclick="buscaTorres()" />
             </div>
         </div>
     </fieldset>
 
-    <a href="/Torre/Create" class="btn btn-success">Novo registro</a>
+    <br />
+    <a href="/Torre/Create" class="btn btn-info">Novo registro</a>
     <br />
     <br />
     <br />

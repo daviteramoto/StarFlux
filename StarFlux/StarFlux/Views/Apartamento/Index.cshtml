@@ -1,4 +1,8 @@
 ﻿@model List<ApartamentoViewModel>
+@{
+    ViewData["Title"] = "Apartamentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <body onload="buscaApartamentos()">
     <fieldset id="areaFiltro" class="form-group">
@@ -26,13 +30,14 @@
             </div>
             <div class="col-lg-1">
                 <br />
-                <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar"
+                <input type="button" id="btnFiltro" class="btn btn-info" value="Aplicar"
                        onclick="buscaApartamentos()" />
             </div>
         </div>
     </fieldset>
 
-    <a href="/Apartamento/Create" class="btn btn-success">Novo registro</a>
+    <br />
+    <a href="/Apartamento/Create" class="btn btn-info">Novo registro</a>
     <br />
     <br />
     <br />

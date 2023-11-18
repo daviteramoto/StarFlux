@@ -68,7 +68,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background: linear-gradient(to bottom, #221742, #372252 25%, #2E2848 50%);
+    background: linear-gradient(to bottom, #1693a5, #45b5c4 25%, #7ececa 50%);
     background-color: #221742;
     font-family: 'HalisGR-Bold', sans-serif;
     color: white;
@@ -80,4 +80,8 @@ body {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
+}
+
+.table {
+    color: white;
 }
