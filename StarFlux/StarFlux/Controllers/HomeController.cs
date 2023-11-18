@@ -27,6 +27,8 @@ namespace StarFlux.Controllers
 
         public IActionResult Sobre()
         {
+            ViewBag.Logado = HelperControllers.VerificaUsuarioLogado(HttpContext.Session);
+            ViewBag.Administrador = HelperControllers.VerificaUsuarioAdministrador(HttpContext.Session);
             return View("Sobre");
         }
 

@@ -1,0 +1,25 @@
+﻿@model List<HabitanteViewModel>
+
+<table class="table table-striped">
+    <tr>
+        <th>Ações</th>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Data de nascimento</th>
+        <th>Apartamento</th>
+    </tr>
+
+    @foreach (HabitanteViewModel habitante in Model)
+    {
+        <tr>
+            <td>
+                <a href="/habitante/edit?id=@habitante.ID"><img width="20" src="~/img/edit.png" /></a>
+                <a href="javascript:apagarHabitante(@habitante.ID)"><img width="20" src="~/img/delete.png" /></a>
+            </td>
+            <td>@habitante.ID</td>
+            <td>@habitante.Nome</td>
+            <td>@habitante.DataNascimento.ToShortDateString()</td>
+            <td>@habitante.ID_Apartamento - @habitante.NomeApartamento</td>
+        </tr>
+    }
+</table>

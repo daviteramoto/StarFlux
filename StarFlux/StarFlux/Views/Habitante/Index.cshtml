@@ -1,0 +1,41 @@
+﻿@model List<HabitanteViewModel>
+
+<body onload="buscaHabitantes()">
+    <fieldset id="areaFiltro" class="form-group">
+        <legend>Habitantes</legend>
+        <div class="row">
+            <div class="col-lg-1">
+                Código <br />
+                <input type="text" id="codigo" class="form-control" />
+            </div>
+            <div class="col-lg-3">
+                Nome <br />
+                <input type="text" id="nome" class="form-control" />
+            </div>
+            <div class="col-lg-2">
+                Data de nascimento <br />
+                <input type="date" id="dataInicial" class="form-control" />
+            </div>
+            <div class="col-lg-2">
+                <br />
+                <input type="date" id="dataFinal" class="form-control" />
+            </div>
+            <div class="col-lg-3">
+                Apartamento <br />
+                <select id="apartamento" class="form-control" asp-items="@ViewBag.Apartamentos"></select>
+            </div>
+            <div class="col-lg-1">
+                <br />
+                <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar"
+                       onclick="buscaHabitantes()" />
+            </div>
+        </div>
+    </fieldset>
+
+    <a href="/Habitante/Create" class="btn btn-success">Novo registro</a>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div id="resultadoConsultaHabitantes" class="table-responsive"></div>
+</body>

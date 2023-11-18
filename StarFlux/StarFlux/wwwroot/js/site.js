@@ -56,3 +56,36 @@ function buscaApartamentos() {
         }
     })
 }
+
+function apagarHabitante(id) {
+    if (confirm('Confirma a exclusão do habitante?'))
+        location.href = 'apartamento/Delete?id=' + id;
+}
+
+function buscaHabitantes() {
+    var codigo = document.getElementById("codigo").value;
+    var nome = document.getElementById("nome").value;
+    var dataInicial = document.getElementById("dataInicial").value;
+    var dataFinal = document.getElementById("dataFinal").value;
+    var apartamento = document.getElementById("apartamento").value;
+
+    $.ajax({
+        url: "/Habitante/BuscaHabitantes",
+        data: {
+            codigo: codigo,
+            nome: nome,
+            dataInicial: dataInicial,
+            dataFinal: dataFinal,
+            apartamento: apartamento
+        },
+        success: function (dados) {
+            if (dados.erro != undefined) {
+                alert(dados.msg);
+            }
+            else {
+                document.getElementById("resultadoConsultaHabitantes").innerHTML = dados;
+            }
+
+        }
+    })
+}

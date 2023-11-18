@@ -26,9 +26,6 @@
                         </li>
                         @if (ViewBag.Logado == true)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOff">Logoff</a>
-                            </li>
                             if (ViewBag.Administrador == true)
                             {
                                 <li class="nav-item">
@@ -37,8 +34,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Torre" asp-action="Index">Torres</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Habitante" asp-action="Index">Habitantes</a>
+                                </li>
                             }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOff">Logoff</a>
+                            </li>
                         }
                         else
                         {
