@@ -1,0 +1,29 @@
+﻿@model List<TorreViewModel>
+
+<body onload="buscaTorres()">
+    <fieldset id="areaFiltroTorres" class="form-group">
+        <legend>Torres</legend>
+        <div class="row">
+            <div class="col-lg-1">
+                Código <br />
+                <input type="text" id="codigoTorre" class="form-control" />
+            </div>
+            <div class="col-lg-4">
+                Nome <br />
+                <input type="text" id="nomeTorre" class="form-control" />
+            </div>
+            <div class="col-lg-1">
+                <br />
+                <input type="button" id="btnFiltroTorres" class="btn btn-success" value="Aplicar"
+                       onclick="buscaTorres()" />
+            </div>
+        </div>
+    </fieldset>
+
+    <a href="/Torre/Create" class="btn btn-success">Novo registro</a>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div id="resultadoConsultaTorres" class="table-responsive"></div>
+</body>
