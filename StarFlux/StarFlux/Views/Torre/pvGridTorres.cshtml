@@ -1,0 +1,21 @@
+﻿@model List<TorreViewModel>
+
+<table class="table table-striped">
+    <tr>
+        <th>Ações</th>
+        <th>Código</th>
+        <th>Nome</th>
+    </tr>
+
+    @foreach (TorreViewModel torre in Model)
+    {
+        <tr>
+            <td>
+                <a href="/torre/edit?id=@torre.ID"><img width="20" src="~/img/1159633.png" /></a>
+                <a href="javascript:apagarTorre(@torre.ID)"><img width="20" src="~/img/54324 - copia.png" /></a>
+            </td>
+            <td>@torre.ID</td>
+            <td>@torre.Nome</td>
+        </tr>
+    }
+</table>

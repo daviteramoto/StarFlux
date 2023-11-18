@@ -1,4 +1,25 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function apagarTorre(id) {
+    if (confirm('Confirma a exclusão da torre?'))
+        location.href = 'torre/Delete?id=' + id;
+}
 
-// Write your JavaScript code.
+function buscaTorres() {
+    var codigoTorre = document.getElementById("codigoTorre").value;
+    var nomeTorre = document.getElementById("nomeTorre").value;
+
+    $.ajax({
+        url: "/Torre/BuscaTorres",
+        data: {
+            codigo: codigoTorre,
+            nome: nomeTorre
+        },
+        success: function (dados) {
+            if (dados.erro != undefined) {
+                alert(dados.msg);
+            }
+            else {
+                document.getElementById("resultadoConsultaTorres").innerHTML = dados;
+            }
+        }
+    })
+}

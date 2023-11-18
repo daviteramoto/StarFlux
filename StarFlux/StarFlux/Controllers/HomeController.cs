@@ -20,12 +20,14 @@ namespace StarFlux.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Logado = HelperControllers.VerificaUsuarioLogado(HttpContext.Session);
+            ViewBag.Administrador = HelperControllers.VerificaUsuarioAdministrador(HttpContext.Session);
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Sobre()
         {
-            return View();
+            return View("Sobre");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
