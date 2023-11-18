@@ -1,0 +1,25 @@
+﻿@model List<ApartamentoViewModel>
+
+<table class="table table-striped">
+    <tr>
+        <th>Ações</th>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Data de cadastro</th>
+        <th>Torre</th>
+    </tr>
+
+    @foreach (ApartamentoViewModel apartamento in Model)
+    {
+        <tr>
+            <td>
+                <a href="/apartamento/edit?id=@apartamento.ID"><img width="20" src="~/img/1159633.png" /></a>
+                <a href="javascript:apagarApartamento(@apartamento.ID)"><img width="20" src="~/img/54324 - copia.png" /></a>
+            </td>
+            <td>@apartamento.ID</td>
+            <td>@apartamento.Nome</td>
+            <td>@apartamento.DataCadastro.ToShortDateString()</td>
+            <td>@apartamento.ID_Torre - @apartamento.NomeTorre</td>
+        </tr>
+    }
+</table>

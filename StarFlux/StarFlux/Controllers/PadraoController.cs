@@ -15,7 +15,7 @@ namespace StarFlux.Controllers
         protected bool ExigeAutenticacao { get; set; } = true;
         protected bool ExigeAdministrador { get; set; } = false;
 
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
             try
             {
