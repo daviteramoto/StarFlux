@@ -1,41 +1,48 @@
 ﻿@model ApartamentoViewModel
 @{
+    ViewData["Title"] = "Apartamentos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Cadastro de Apartamento</h2>
 
-<form action="Save" method="post" class="col-md-6">
-
-    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-
-    <label for="Id" class="control-label">ID</label>
-    @if (ViewBag.Operacao == "I")
-    {
-        <input asp-for="ID" class="form-control" />
-    }
-    else
-    {
-        <input asp-for="ID" class="form-control" readonly />
-    }
-    <span asp-validation-for="ID" class="text-danger"></span>
+<body class="text-center">
+    <h1>Cadastro de Apartamento</h1>
     <br />
+    <br />
+    <div class="row justify-content-center">
+        <form action="Save" method="post" class="col-md-6">
 
-    <label for="Nome" class="control-label">Nome</label>
-    <input asp-for="Nome" class="form-control" />
-    <span asp-validation-for="Nome" class="text-danger"></span>
-    <br />
+            <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
-    <label for="DataCadastro" class="control-label">Data de cadastro</label>
-    <input asp-for="DataCadastro" type="date" value="@Model.DataCadastro.ToString("yyyy-MM-dd")" class="form-control" />
-    <span asp-validation-for="DataCadastro" class="text-danger"></span>
-    <br />
+            <label for="Id" class="control-label">ID</label>
+            @if (ViewBag.Operacao == "I")
+            {
+                <input asp-for="ID" class="form-control" />
+            }
+            else
+            {
+                <input asp-for="ID" class="form-control" readonly />
+            }
+            <span asp-validation-for="ID" class="text-danger"></span>
+            <br />
 
-    <label for="ID_Torre" class="control-label">Torre</label>
-    <select asp-for="ID_Torre" asp-items="ViewBag.Torres" class="form-control"> </select>
-    <span asp-validation-for="ID_Torre" class="text-danger"></span>
-    <br />
+            <label for="Nome" class="control-label">Nome</label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+            <br />
 
-    <br />
-    <input type="submit" value="Salvar dados" class="btn btn-info" />
-    <br />
-</form>
+            <label for="DataCadastro" class="control-label">Data de cadastro</label>
+            <input asp-for="DataCadastro" type="date" value="@Model.DataCadastro.ToString("yyyy-MM-dd")" class="form-control" />
+            <span asp-validation-for="DataCadastro" class="text-danger"></span>
+            <br />
+
+            <label for="ID_Torre" class="control-label">Torre</label>
+            <select asp-for="ID_Torre" asp-items="ViewBag.Torres" class="form-control"> </select>
+            <span asp-validation-for="ID_Torre" class="text-danger"></span>
+            <br />
+
+            <br />
+            <input type="submit" value="Salvar dados" class="btn btn-info" />
+            <br />
+        </form>
+    </div>
+</body>

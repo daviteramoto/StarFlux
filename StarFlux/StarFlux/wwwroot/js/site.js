@@ -3,14 +3,24 @@
         title: "Confirmação",
         text: "Deseja realmente excluir a torre?",
         icon: "warning",
+        iconColor: "#1693a5",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#1693a5",
+        cancelButtonColor: "#7ececa",
         confirmButtonText: "Sim, excluir!",
-        cancelButtonText: "Cancelar"
+        cancelButtonText: "Cancelar",
     }).then((result) => {
         if (result.isConfirmed) {
-            location.href = 'torre/Delete?id=' + id;
+            Swal.fire({
+                title: "Torre Deletada!",
+                text: "A torre foi deletada com sucesso.",
+                icon: "success",
+                iconColor: "#1693a5"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = 'torre/Delete?id=' + id;
+                }
+            });
         }
     });
 }
@@ -41,14 +51,24 @@ function apagarApartamento(id) {
         title: "Confirmação",
         text: "Deseja realmente excluir o apartamento?",
         icon: "warning",
+        iconColor: "#1693a5",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#1693a5",
+        cancelButtonColor: "#7ececa",
         confirmButtonText: "Sim, excluir!",
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
-            location.href = 'apartamento/Delete?id=' + id;
+            Swal.fire({
+                title: "Apartamento Deletado!",
+                text: "O apartamento foi deletado com sucesso.",
+                icon: "success",
+                iconColor: "#1693a5"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = 'apartamento/Delete?id=' + id;
+                }
+            });
         }
     });
 }
@@ -85,14 +105,24 @@ function apagarHabitante(id) {
         title: "Confirmação",
         text: "Deseja realmente excluir o habitante?",
         icon: "warning",
+        iconColor: "#1693a5",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#1693a5",
+        cancelButtonColor: "#7ececa",
         confirmButtonText: "Sim, excluir!",
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
-            location.href = 'habitante/Delete?id=' + id;
+            Swal.fire({
+                title: "Habitante Deletado!",
+                text: "O habitante foi deletado com sucesso.",
+                icon: "success",
+                iconColor: "#1693a5"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = 'habitante/Delete?id=' + id;
+                }
+            });
         }
     });
 }
