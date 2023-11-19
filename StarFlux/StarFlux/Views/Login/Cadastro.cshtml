@@ -14,14 +14,8 @@
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
             <label for="Id" class="control-label">ID</label>
-            @if (ViewBag.Operacao == "I")
-            {
-                <input asp-for="ID" class="form-control" />
-            }
-            else
-            {
-                <input asp-for="ID" class="form-control" readonly />
-            }
+            <input asp-for="ID" class="form-control" readonly />
+
             <span asp-validation-for="ID" class="text-danger"></span>
             <br />
 

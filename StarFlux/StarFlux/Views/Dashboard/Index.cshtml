@@ -1,6 +1,10 @@
-﻿<h2>Dashboard de Vazão de Água</h2>
+﻿<body class="text-center">
+    <h1>Dashboard de Vazão de Água</h1>
+</body>
 
-<div id="vazaoContainer">
+<br />
+
+<div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
     <canvas id="vazaoChart" width="400" height="200"></canvas>
 </div>
 
@@ -12,28 +16,17 @@
             data: {
                 labels: [0],
                 datasets: [{
-                    label: 'Vazão de Água',
+                    label: 'Vazão de Água (L/min)',
                     data: [0],
                     fill: false,
-                    borderColor: 'blue',
+                    borderColor: '#1693a5',
                     tension: 0.1
                 }]
-            },
-            options: {
-                /*scales: {
-                    xAxes: {
-                        type: 'linear',
-                        position: 'bottom'
-                    },
-                    yAxes: {
-                        min: 0
-                    }
-                }*/
             }
         });
 
         function addDataToChart(timestamp, vazao) {
-            if (vazaoChart.data.datasets[0].data.length >= 15){
+            if (vazaoChart.data.datasets[0].data.length >= 15) {
                 vazaoChart.data.labels.shift();
                 vazaoChart.data.datasets[0].data.shift();
             }

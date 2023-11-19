@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="border: #c7ede8 !important; background-color: #c7ede8 !important ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="border: #c7ede8 !important; background-color: #c7ede8 !important; opacity: 77%">
             <div class="container">
                 <img style="max-width: 5% !important" src="/img/logo.png" class="logo" alt="Logo da Empresa">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">StarFlux</a>
@@ -32,8 +32,8 @@
                                 Home
                             </a>
                             <div class="dropdown-menu" aria-labelledby="areaAdminDropdown">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown" id="dashboardDropdown">
@@ -41,7 +41,7 @@
                                 Dashboards
                             </a>
                             <div class="dropdown-menu" aria-labelledby="areaAdminDropdown">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
                             </div>
                         </li>
                         @if (ViewBag.Logado == true)
@@ -58,23 +58,26 @@
                                         <a class="dropdown-item" asp-area="" asp-controller="Habitante" asp-action="Index">Habitantes</a>
                                     </div>
                                 </li>
-
                             }
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOff">Logoff</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                            </li>
                         }
                     </ul>
                 </div>
+                @if (ViewBag.Logado == true)
+                {
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOff">Logoff</a>
+                }
+                else
+                {
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                }
             </div>
         </nav>
     </header>
+    <footer style="border: #c7ede8 !important; background-color: #c7ede8 !important; opacity: 77%">
+        <div class="container">
+            &copy; 2023 StarFlux - Todos os direitos reservados
+        </div>
+    </footer>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -85,6 +88,20 @@
 
 <script>
     $(document).ready(function () {
+
+        $('.navbar').mouseenter(function () {
+            $(this).css('opacity', '100%');
+        });
+        $('.navbar').mouseleave(function () {
+            $(this).css('opacity', '77%');
+        });
+        $('footer').mouseenter(function () {
+            $(this).css('opacity', '100%');
+        });
+        $('footer').mouseleave(function () {
+            $(this).css('opacity', '77%');
+        });
+
         $('#areaAdminDropdown').hover(function () {
             $(this).addClass('show');
             $(this).find('.dropdown-menu').addClass('show');
