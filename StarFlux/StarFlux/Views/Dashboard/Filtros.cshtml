@@ -1,0 +1,79 @@
+﻿<body class="text-center">
+    <h1>Dashboard de Vazão de Água</h1>
+</body>
+
+<br />
+
+<fieldset id="areaFiltro" class="form-group">
+    <legend>Filtros</legend>
+    <div class="row">
+        <div class="col-lg-2">
+            Data <br />
+            <input type="date" id="dataInicial" class="form-control" />
+        </div>
+        <div class="col-lg-2">
+            <br />
+            <input type="date" id="dataFinal" class="form-control" />
+        </div>
+        <div class="col-lg-2">
+            Hora <br />
+            <input type="time" id="horaInicial" class="form-control" />
+        </div>
+        <div class="col-lg-2">
+            <br />
+            <input type="time" id="horaFinal" class="form-control" />
+        </div>
+        <div class="col-lg-1">
+            <br />
+            <input type="button" id="btnFiltro" class="btn btn-info" value="Aplicar"
+                   onclick="buscaChart()" />
+        </div>
+    </div>
+</fieldset>
+
+<br />
+
+<div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
+    <canvas id="vazao1Chart" width="400" height="200"></canvas>
+</div>
+
+<script>
+
+    var ctx = document.getElementById('vazao1Chart');
+    var vazaoChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Vazão de Água (L/min)',
+                data: [],
+                backgroundColor: '#1693a5',
+                borderColor: '#1693a5',
+                borderWidth: 1
+            }]
+        }
+    });
+
+    function buscaChart() {
+        $.ajax({
+            url: '/Dashboard/GetVazaoIntervalo',
+            type: 'GET',
+            success: function (data) {
+                var timestamps = data.map(entry => entry.timestamp);
+                var vazoes = data.map(entry => entry.vazao);
+
+                addDataToChart(timestamps, vazoes);                
+            },
+            error: function () {
+                console.error('Erro ao obter dados de vazão em tempo real.');
+            }
+        });
+    }
+
+    function addDataToChart(timestamps, vazoes) {
+        vazaoChart.data.labels = timestamps;
+        vazaoChart.data.datasets[0].data = vazoes;
+        vazaoChart.update();
+    }              
+
+</script>
