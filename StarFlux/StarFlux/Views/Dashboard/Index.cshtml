@@ -6,21 +6,21 @@
 
 <script>
     $(document).ready(function () {
-        var ctx = document.getElementById('vazaoChart').getContext('2d');
+        var ctx = document.getElementById('vazaoChart');
         var vazaoChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [],
+                labels: [0],
                 datasets: [{
                     label: 'Vazão de Água',
-                    data: [],
+                    data: [0],
+                    fill: false,
                     borderColor: 'blue',
-                    borderWidth: 1,
-                    fill: false
+                    tension: 0.1
                 }]
             },
             options: {
-                scales: {
+                /*scales: {
                     xAxes: {
                         type: 'linear',
                         position: 'bottom'
@@ -28,11 +28,15 @@
                     yAxes: {
                         min: 0
                     }
-                }
+                }*/
             }
         });
 
         function addDataToChart(timestamp, vazao) {
+            if (vazaoChart.data.datasets[0].data.length >= 15){
+                vazaoChart.data.labels.shift();
+                vazaoChart.data.datasets[0].data.shift();
+            }
             vazaoChart.data.labels.push(timestamp);
             vazaoChart.data.datasets[0].data.push(vazao);
             vazaoChart.update();
@@ -43,8 +47,7 @@
                 url: '/Dashboard/GetVazaoTempoReal',
                 type: 'GET',
                 success: function (data) {
-                    let timestamp = new Date(data.timestamp)
-                    addDataToChart(timestamp, data.vazao);
+                    addDataToChart(data.timestamp, data.vazao);
                     console.log(data);
                 },
                 error: function () {
@@ -53,6 +56,6 @@
             });
         }
 
-        setInterval(updateChart, 5000);
+        setInterval(updateChart, 2000);
     });
 </script>

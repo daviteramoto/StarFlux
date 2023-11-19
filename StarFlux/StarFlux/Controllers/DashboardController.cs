@@ -25,7 +25,7 @@ namespace StarFlux.Controllers
 
                 var data = new VazaoTempoRealDto
                 {
-                    Timestamp = DateTime.Now,
+                    Timestamp = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
                     Vazao = vazao
                 };
 
