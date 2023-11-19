@@ -7,6 +7,7 @@
         <th>Nome</th>
         <th>Data de nascimento</th>
         <th>Apartamento</th>
+        <th>Torre</th>
     </tr>
 
     @foreach (HabitanteViewModel habitante in Model)
@@ -19,7 +20,8 @@
             <td>@habitante.ID</td>
             <td>@habitante.Nome</td>
             <td>@habitante.DataNascimento.ToShortDateString()</td>
-            <td>@habitante.ID_Apartamento - @habitante.NomeApartamento</td>
+            <td>@habitante.NomeApartamento</td>
+            <td>@habitante.NomeTorre</td>
         </tr>
     }
 </table>

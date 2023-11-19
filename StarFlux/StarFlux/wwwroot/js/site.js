@@ -1,6 +1,18 @@
 ﻿function apagarTorre(id) {
-    if (confirm('Confirma a exclusão da torre?'))
-        location.href = 'torre/Delete?id=' + id;
+    Swal.fire({
+        title: "Confirmação",
+        text: "Deseja realmente excluir a torre?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, excluir!",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = 'torre/Delete?id=' + id;
+        }
+    });
 }
 
 function buscaTorres() {
@@ -25,8 +37,20 @@ function buscaTorres() {
 }
 
 function apagarApartamento(id) {
-    if (confirm('Confirma a exclusão do apartamento?'))
-        location.href = 'apartamento/Delete?id=' + id;
+    Swal.fire({
+        title: "Confirmação",
+        text: "Deseja realmente excluir o apartamento?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, excluir!",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = 'apartamento/Delete?id=' + id;
+        }
+    });
 }
 
 function buscaApartamentos() {
@@ -52,14 +76,25 @@ function buscaApartamentos() {
             else {
                 document.getElementById("resultadoConsulta").innerHTML = dados;
             }
-
         }
     })
 }
 
 function apagarHabitante(id) {
-    if (confirm('Confirma a exclusão do habitante?'))
-        location.href = 'apartamento/Delete?id=' + id;
+    Swal.fire({
+        title: "Confirmação",
+        text: "Deseja realmente excluir o habitante?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, excluir!",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = 'habitante/Delete?id=' + id;
+        }
+    });
 }
 
 function buscaHabitantes() {
@@ -68,6 +103,7 @@ function buscaHabitantes() {
     var dataInicial = document.getElementById("dataInicial").value;
     var dataFinal = document.getElementById("dataFinal").value;
     var apartamento = document.getElementById("apartamento").value;
+    var torre = document.getElementById("torre").value;
 
     $.ajax({
         url: "/Habitante/BuscaHabitantes",
@@ -76,7 +112,8 @@ function buscaHabitantes() {
             nome: nome,
             dataInicial: dataInicial,
             dataFinal: dataFinal,
-            apartamento: apartamento
+            apartamento: apartamento,
+            torre: torre
         },
         success: function (dados) {
             if (dados.erro != undefined) {
@@ -85,7 +122,6 @@ function buscaHabitantes() {
             else {
                 document.getElementById("resultadoConsultaHabitantes").innerHTML = dados;
             }
-
         }
     })
 }

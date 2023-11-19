@@ -1,0 +1,58 @@
+﻿<h2>Dashboard de Vazão de Água</h2>
+
+<div id="vazaoContainer">
+    <canvas id="vazaoChart" width="400" height="200"></canvas>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var ctx = document.getElementById('vazaoChart').getContext('2d');
+        var vazaoChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Vazão de Água',
+                    data: [],
+                    borderColor: 'blue',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: {
+                        type: 'linear',
+                        position: 'bottom'
+                    },
+                    yAxes: {
+                        min: 0
+                    }
+                }
+            }
+        });
+
+        function addDataToChart(timestamp, vazao) {
+            vazaoChart.data.labels.push(timestamp);
+            vazaoChart.data.datasets[0].data.push(vazao);
+            vazaoChart.update();
+        }
+
+        function updateChart() {
+            $.ajax({
+                url: '/Dashboard/GetVazaoTempoReal',
+                type: 'GET',
+                success: function (data) {
+                    let timestamp = new Date(data.timestamp)
+                    addDataToChart(timestamp, data.vazao);
+                    console.log(data);
+                },
+                error: function () {
+                    console.error('Erro ao obter dados de vazão em tempo real.');
+                }
+            });
+        }
+
+        setInterval(updateChart, 5000);
+    });
+</script>

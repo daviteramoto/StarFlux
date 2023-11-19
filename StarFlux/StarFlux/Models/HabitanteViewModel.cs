@@ -11,6 +11,7 @@ namespace StarFlux.Models
         public byte[] FotoByte { get; set; }
 
         public string NomeApartamento { get; set; }
+        public string NomeTorre { get; set; }
         public IFormFile Foto { get; set; }
         public string FotoBase64
         {

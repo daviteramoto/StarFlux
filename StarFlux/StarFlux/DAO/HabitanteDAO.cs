@@ -35,6 +35,9 @@ namespace StarFlux.DAO
             if (registro.Table.Columns.Contains("nomeApartamento"))
                 u.NomeApartamento = registro["nomeApartamento"].ToString();
 
+            if (registro.Table.Columns.Contains("nomeTorre"))
+                u.NomeTorre = registro["nomeTorre"].ToString();
+
             if (registro["Foto"] != DBNull.Value)
                 u.FotoByte = registro["Foto"] as byte[];
 
@@ -52,7 +55,8 @@ namespace StarFlux.DAO
             string nome,
             DateTime dataInicial,
             DateTime dataFinal,
-            int apartamento)
+            int apartamento,
+            int torre)
         {
             SqlParameter[] p =
             {
@@ -60,7 +64,8 @@ namespace StarFlux.DAO
                 new SqlParameter("nome", nome),
                 new SqlParameter("dataInicial", dataInicial),
                 new SqlParameter("dataFinal", dataFinal),
-                new SqlParameter("idApartamento", apartamento)
+                new SqlParameter("idApartamento", apartamento),
+                new SqlParameter("idTorre", torre)
             };
 
             var tabela = HelperDAO.ExecutaProcSelect("spListagemHabitantesFiltro", p);

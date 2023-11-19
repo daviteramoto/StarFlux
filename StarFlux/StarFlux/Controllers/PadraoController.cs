@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using StarFlux.DAO;
 using StarFlux.Models;
+using System.Data.SqlClient;
 
 namespace StarFlux.Controllers
 {
@@ -106,15 +107,18 @@ namespace StarFlux.Controllers
             }
         }
 
-        public IActionResult Delete(int id)
+        public virtual IActionResult Delete(int id)
         {
             try
             {
                 DAO.Delete(id);
                 return RedirectToAction(NomeViewIndex);
             }
-            catch (Exception erro)
+            catch (SqlException erro)
             {
+                if (erro.Number == 547)
+                    return View("Error", new ErrorViewModel("Não é possível deletar o registro pois ele está sendo utilizado no sistema."));
+
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }

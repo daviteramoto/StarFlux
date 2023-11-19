@@ -24,6 +24,7 @@ namespace StarFlux.Controllers
             try
             {
                 PreparaListaApartamentosParaCombo();
+                PreparaListaTorresParaCombo();
                 return View(NomeViewIndex);
             }
             catch (Exception erro)
@@ -75,6 +76,7 @@ namespace StarFlux.Controllers
             base.PreencheDadosParaView(Operacao, model);
 
             PreparaListaApartamentosParaCombo();
+            PreparaListaTorresParaCombo();
         }
 
         private void PreparaListaApartamentosParaCombo()
@@ -82,7 +84,7 @@ namespace StarFlux.Controllers
             ApartamentoDAO apartamentoDAO = new ApartamentoDAO();
             var apartamentos = apartamentoDAO.Listagem();
             List<SelectListItem> lista = new List<SelectListItem>();
-            lista.Add(new SelectListItem("Selecione um apartamento...", ""));
+            lista.Add(new SelectListItem("Selecione um apartamento...", "0"));
 
             foreach (var apartamento in apartamentos)
             {
@@ -93,12 +95,29 @@ namespace StarFlux.Controllers
             ViewBag.Apartamentos = lista;
         }
 
+        private void PreparaListaTorresParaCombo()
+        {
+            TorreDAO torreDAO = new TorreDAO();
+            var torres = torreDAO.Listagem();
+            List<SelectListItem> lista = new List<SelectListItem>();
+            lista.Add(new SelectListItem("Selecione uma torre...", "0"));
+
+            foreach (var torre in torres)
+            {
+                SelectListItem item = new SelectListItem(torre.Nome, torre.ID.ToString());
+                lista.Add(item);
+            }
+
+            ViewBag.TorresH = lista;
+        }
+
         public IActionResult BuscaHabitantes(
             int codigo,
             string nome,
             DateTime dataInicial,
             DateTime dataFinal,
-            int apartamento)
+            int apartamento,
+            int torre)
         {
             try
             {
@@ -112,7 +131,7 @@ namespace StarFlux.Controllers
                     dataFinal = SqlDateTime.MaxValue.Value;
 
                 var lista = dao.BuscaHabitantesFiltro(codigo, nome, dataInicial, dataFinal,
-                    apartamento);
+                    apartamento, torre);
 
                 return PartialView("pvGridHabitantes", lista);
             }
