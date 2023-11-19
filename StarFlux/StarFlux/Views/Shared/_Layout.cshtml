@@ -18,7 +18,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="border: #c7ede8 !important; background-color: #c7ede8 !important ">
             <div class="container">
-                <img style="max-width: 7% !important" src="/img/logo.png" class="logo" alt="Logo da Empresa">
+                <img style="max-width: 5% !important" src="/img/logo.png" class="logo" alt="Logo da Empresa">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">StarFlux</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -26,28 +26,38 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <li class="nav-item dropdown" id="homeDropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Home
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="areaAdminDropdown">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                        <li class="nav-item dropdown" id="dashboardDropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dashboards
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="areaAdminDropdown">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                            </div>
                         </li>
                         @if (ViewBag.Logado == true)
-                        {                            
+                        {
                             if (ViewBag.Administrador == true)
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Apartamento" asp-action="Index">Apartamentos</a>
+                                <li class="nav-item dropdown" id="areaAdminDropdown">
+                                    <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Área Administrativa
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="areaAdminDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Apartamento" asp-action="Index">Apartamentos</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Torre" asp-action="Index">Torres</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Habitante" asp-action="Index">Habitantes</a>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Torre" asp-action="Index">Torres</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Habitante" asp-action="Index">Habitantes</a>
-                                </li>
+
                             }
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOff">Logoff</a>
@@ -71,3 +81,31 @@
     </div>
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        $('#areaAdminDropdown').hover(function () {
+            $(this).addClass('show');
+            $(this).find('.dropdown-menu').addClass('show');
+        }, function () {
+            $(this).removeClass('show');
+            $(this).find('.dropdown-menu').removeClass('show');
+        });
+
+        $('#homeDropdown').hover(function () {
+            $(this).addClass('show');
+            $(this).find('.dropdown-menu').addClass('show');
+        }, function () {
+            $(this).removeClass('show');
+            $(this).find('.dropdown-menu').removeClass('show');
+        });
+
+        $('#dashboardDropdown').hover(function () {
+            $(this).addClass('show');
+            $(this).find('.dropdown-menu').addClass('show');
+        }, function () {
+            $(this).removeClass('show');
+            $(this).find('.dropdown-menu').removeClass('show');
+        });
+    });
+</script>
