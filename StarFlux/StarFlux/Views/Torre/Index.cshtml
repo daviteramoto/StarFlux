@@ -5,9 +5,10 @@
 }
 
 <body onload="buscaTorres()">
+    <h2 class="text-center">Torres</h2>
+    <br />
     <fieldset id="areaFiltroTorres" class="form-group">
-        <legend>Torres</legend>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-lg-1">
                 Código <br />
                 <input type="text" id="codigoTorre" class="form-control" />
@@ -25,9 +26,7 @@
     </fieldset>
 
     <br />
-    <a href="/Torre/Create" class="btn btn-info">Novo registro</a>
-    <br />
-    <br />
+    <a href="/Torre/Create" class="btn btn-info">Cadastrar nova <u>Torre</u></a>
     <br />
     <br />
     <div id="resultadoConsultaTorres" class="table-responsive"></div>

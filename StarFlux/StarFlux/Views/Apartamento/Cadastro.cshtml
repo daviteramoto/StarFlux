@@ -5,7 +5,7 @@
 }
 
 <body class="text-center">
-    <h1>Cadastro de Apartamento</h1>
+    <h2>Cadastro de Apartamento</h2>
     <br />
     <br />
     <div class="row justify-content-center">
@@ -13,26 +13,25 @@
 
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
-            <label for="Id" class="control-label">ID</label>
-            <input asp-for="ID" class="form-control" readonly />
+            <label for="Id" class="control-label">Código:</label>
+            <input asp-for="ID" class="form-control text-center" readonly />
 
             <span asp-validation-for="ID" class="text-danger"></span>
             <br />
 
-            <label for="Nome" class="control-label">Nome</label>
-            <input asp-for="Nome" class="form-control" />
+            <label for="Nome" class="control-label">Nome:</label>
+            <input asp-for="Nome" class="form-control text-center" />
             <span asp-validation-for="Nome" class="text-danger"></span>
             <br />
 
-            <label for="DataCadastro" class="control-label">Data de cadastro</label>
-            <input asp-for="DataCadastro" type="date" value="@Model.DataCadastro.ToString("yyyy-MM-dd")" class="form-control" />
+            <label for="DataCadastro" class="control-label">Data de Cadastro:</label>
+            <input asp-for="DataCadastro" type="date" value="@Model.DataCadastro.ToString("yyyy-MM-dd")" class="form-control text-center" />
             <span asp-validation-for="DataCadastro" class="text-danger"></span>
             <br />
 
-            <label for="ID_Torre" class="control-label">Torre</label>
-            <select asp-for="ID_Torre" asp-items="ViewBag.Torres" class="form-control"> </select>
+            <label for="ID_Torre" class="control-label">Torre:</label>
+            <select asp-for="ID_Torre" asp-items="ViewBag.Torres" class="form-control text-center"> </select>
             <span asp-validation-for="ID_Torre" class="text-danger"></span>
-            <br />
 
             <label for="ID_Sensor" class="control-label">Sensor</label>
             <select asp-for="ID_Sensor" asp-items="ViewBag.Sensores" class="form-control"> </select>
@@ -40,6 +39,9 @@
             <br />
 
             <br />
+            <br />
+            <a href="/Apartamento" class="btn btn-info" style="background-color: #08626f !important; border-color: #08626f !important ">Voltar</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" value="Salvar dados" class="btn btn-info" />
             <br />
         </form>

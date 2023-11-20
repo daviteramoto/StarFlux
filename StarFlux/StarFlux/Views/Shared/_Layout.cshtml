@@ -29,10 +29,10 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item dropdown" id="homeDropdown">
                             <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Home
+                                Início
                             </a>
                             <div class="dropdown-menu" aria-labelledby="areaAdminDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Tela Inicial</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre</a>
                             </div>
                         </li>
@@ -41,8 +41,8 @@
                                 Dashboards
                             </a>
                             <div class="dropdown-menu" aria-labelledby="areaAdminDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Dashboard" asp-action="Filtros">Dashboard Filtros</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Dashboard" asp-action="Filtros">Vazão por Data e Hora</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Dashboard" asp-action="Index">Vazão em Tempo Real</a>
                             </div>
                         </li>
                         @if (ViewBag.Logado == true)
@@ -55,8 +55,8 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="areaAdminDropdown">
                                         <a class="dropdown-item" asp-area="" asp-controller="Apartamento" asp-action="Index">Apartamentos</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Torre" asp-action="Index">Torres</a>
                                         <a class="dropdown-item" asp-area="" asp-controller="Habitante" asp-action="Index">Habitantes</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Torre" asp-action="Index">Torres</a>
                                         <a class="dropdown-item" asp-area="" asp-controller="Sensor" asp-action="Index">Sensores</a>
                                     </div>
                                 </li>
@@ -104,26 +104,29 @@
             $(this).css('opacity', '77%');
         });
 
-        $('#areaAdminDropdown').hover(function () {
+        $('#areaAdminDropdown').mouseenter(function () {
             $(this).addClass('show');
             $(this).find('.dropdown-menu').addClass('show');
-        }, function () {
+        });
+        $('#areaAdminDropdown').mouseleave(function () {
             $(this).removeClass('show');
             $(this).find('.dropdown-menu').removeClass('show');
         });
 
-        $('#homeDropdown').hover(function () {
+        $('#homeDropdown').mouseenter(function () {
             $(this).addClass('show');
             $(this).find('.dropdown-menu').addClass('show');
-        }, function () {
+        });
+        $('#homeDropdown').mouseleave(function () {
             $(this).removeClass('show');
             $(this).find('.dropdown-menu').removeClass('show');
         });
 
-        $('#dashboardDropdown').hover(function () {
+        $('#dashboardDropdown').mouseenter(function () {
             $(this).addClass('show');
             $(this).find('.dropdown-menu').addClass('show');
-        }, function () {
+        });
+        $('#dashboardDropdown').mouseleave(function () {
             $(this).removeClass('show');
             $(this).find('.dropdown-menu').removeClass('show');
         });

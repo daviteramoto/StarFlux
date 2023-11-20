@@ -1,46 +1,48 @@
-﻿<body class="text-center">
-    <h1>Dashboard de Vazão de Água</h1>
-</body>
+﻿@{
+    ViewData["Title"] = "Vazão com Filtros";
+}
 
-<br />
+<body class="text-center">
+    <h1>Vazão de Água em Tempo Real</h1>
+    <br />
+    <h3>Filtros</h3>
 
-<fieldset id="areaFiltro" class="form-group" onload="buscaChart()">
-    <legend>Filtros</legend>
-    <div class="row">
-        <div class="col-lg-2">
-            Data <br />
-            <input type="date" id="dataInicial" class="form-control" />
-        </div>
-        <div class="col-lg-2">
-            <br />
-            <input type="date" id="dataFinal" class="form-control" />
-        </div>
-        <div class="col-lg-2">
-            Hora <br />
-            <input type="time" id="horaInicial" class="form-control" />
-        </div>
-        <div class="col-lg-2">
-            <br />
-            <input type="time" id="horaFinal" class="form-control" />
-        </div>
-        <div class="col-lg-3">
-            Apartamento <br />
+    <fieldset id="areaFiltro" class="form-group" onload="buscaChart()">
+        <div class="row justify-content-center">
+            <div class="col-lg-2">
+                Data Inicial<br />
+                <input type="date" id="dataInicial" class="form-control" />
+            </div>
+            <div class="col-lg-2">
+                Data Final<br />
+                <input type="date" id="dataFinal" class="form-control" />
+            </div>
+            <div class="col-lg-2">
+                Hora Inicial<br />
+                <input type="time" id="horaInicial" class="form-control" />
+            </div>
+            <div class="col-lg-2">
+                Hora Final<br />
+                <input type="time" id="horaFinal" class="form-control" />
+            </div>
+                <div class="col-lg-3">
+                Apartamento <br />
             <select id="entidadeA" class="form-control" asp-items="@ViewBag.ApartamentosSensores"></select>
         </div>
-
-        <div class="col-lg-1">
-            <br />
-            <input type="button" id="btnFiltro" class="btn btn-info" value="Aplicar"
-                   onclick="buscaChart()" />
+            <div class="col-lg-1">
+                <br />
+                <input type="button" id="btnFiltro" class="btn btn-info" value="Aplicar"
+                       onclick="buscaChart()" />
+            </div>
         </div>
+    </fieldset>
+    <br />
+
+    <div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
+        <canvas id="vazao1Chart" width="400" height="200"></canvas>
     </div>
-</fieldset>
+</body>
 
-<br />
-
-<div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
-    <canvas id="vazao1Chart" width="400" height="200"></canvas>
-</div>
 
 <script>
 
@@ -80,7 +82,7 @@
                 var timestamps = data.map(entry => entry.timestamp);
                 var vazoes = data.map(entry => entry.vazao);
 
-                addDataToChart(timestamps, vazoes);                
+                addDataToChart(timestamps, vazoes);
             },
             error: function () {
                 console.error('Erro ao obter dados de vazão em tempo real.');
@@ -92,6 +94,6 @@
         vazaoChart.data.labels = timestamps;
         vazaoChart.data.datasets[0].data = vazoes;
         vazaoChart.update();
-    }              
+    }
 
 </script>
