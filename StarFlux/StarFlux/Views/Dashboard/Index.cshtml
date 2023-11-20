@@ -4,6 +4,14 @@
 
 <br />
 
+<div class="col-lg-3">
+    Apartamento <br />
+    <select id="entidade" class="form-control" asp-items="@ViewBag.ApartamentosSensores"></select>
+</div>
+
+<br />
+<br />
+
 <div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
     <canvas id="vazaoChart" width="400" height="200"></canvas>
 </div>
@@ -35,10 +43,24 @@
             vazaoChart.update();
         }
 
+        var entidadeAtual = null;
+
         function updateChart() {
+            var entidade = document.getElementById("entidade").value;
+
+            if (entidade !== entidadeAtual) {
+                vazaoChart.data.labels = [];
+                vazaoChart.data.datasets[0].data = [];
+
+                entidadeAtual = entidade;
+            }
+
             $.ajax({
                 url: '/Dashboard/GetVazaoTempoReal',
                 type: 'GET',
+                data: {
+                    entidade: entidade
+                },
                 success: function (data) {
                     addDataToChart(data.timestamp, data.vazao);
                     console.log(data);

@@ -34,6 +34,9 @@ namespace StarFlux.DAO
             if (registro.Table.Columns.Contains("nomeSensor"))
                 u.NomeSensor = registro["nomeSensor"].ToString();
 
+            if (registro.Table.Columns.Contains("entidadeSensor"))
+                u.EntidadeSensor = registro["entidadeSensor"].ToString();
+
             return u;
         }
 
@@ -65,6 +68,18 @@ namespace StarFlux.DAO
             var lista = new List<ApartamentoViewModel>();
             foreach (DataRow item in tabela.Rows)
                 lista.Add(MontaModel(item));
+
+            return lista;
+        }
+
+        public List<ApartamentoViewModel> ListagemApartamentosSensores()
+        {
+            SqlParameter[] p = null;
+
+            var tabela = HelperDAO.ExecutaProcSelect("ListagemApartamentosSensores", p);
+            List<ApartamentoViewModel> lista = new List<ApartamentoViewModel>();
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
 
             return lista;
         }

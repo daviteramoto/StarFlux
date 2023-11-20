@@ -11,5 +11,6 @@ namespace StarFlux.Models
 
         public string NomeTorre { get; set; }
         public string NomeSensor { get; set; }
+        public string EntidadeSensor { get; set; }
     }
 }

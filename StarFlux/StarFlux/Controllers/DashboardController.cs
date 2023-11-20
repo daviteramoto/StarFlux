@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json.Linq;
+using StarFlux.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,21 +15,23 @@ namespace StarFlux.Controllers
         public IActionResult Index()
         {
             PreencheViewBag();
+            PreparaListaApartamentosParaCombo();
             return View();
         }
 
         public IActionResult Filtros()
         {
             PreencheViewBag();
+            PreparaListaApartamentosParaCombo();
             return View();
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetVazaoTempoReal()
+        public async Task<JsonResult> GetVazaoTempoReal(string entidade)
         {
             try
             {
-                var dados = await GetVazaoAPI();
+                var dados = await GetVazaoAPI(entidade);
 
                 var data = new
                 {
@@ -48,9 +52,9 @@ namespace StarFlux.Controllers
             }
         }
 
-        private async Task<(float vazao, DateTime timestamp)> GetVazaoAPI()
+        private async Task<(float vazao, DateTime timestamp)> GetVazaoAPI(string entidade)
         {
-            string apiUrl = "http://46.17.108.131:1026/v2/entities/urn:ngsi-ld:Flux:021/attrs/flux";
+            string apiUrl = $"http://46.17.108.131:1026/v2/entities/urn:ngsi-ld:{entidade}/attrs/flux";
 
             using (HttpClient client = new HttpClient())
             {
@@ -76,7 +80,7 @@ namespace StarFlux.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetVazaoIntervalo(DateTime dataInicial, DateTime dataFinal, TimeSpan horaInicial, TimeSpan horaFinal)
+        public async Task<JsonResult> GetVazaoIntervalo(DateTime dataInicial, DateTime dataFinal, TimeSpan horaInicial, TimeSpan horaFinal, string entidade)
         {
             try
             {
@@ -95,7 +99,7 @@ namespace StarFlux.Controllers
                 DateTime dataHoraInicial = dataInicial.Date.Add(horaInicial);
                 DateTime dataHoraFinal = dataFinal.Date.Add(horaFinal);
 
-                var valores = await GetVazaoIntervaloAPI(dataHoraInicial, dataHoraFinal);
+                var valores = await GetVazaoIntervaloAPI(dataHoraInicial, dataHoraFinal, entidade);
 
                 var data = valores.Select(valor => new
                 {
@@ -116,12 +120,12 @@ namespace StarFlux.Controllers
             }
         }
 
-        private async Task<List<(float vazao, DateTime timestamp)>> GetVazaoIntervaloAPI(DateTime dataHoraInicial, DateTime dataHoraFinal)
+        private async Task<List<(float vazao, DateTime timestamp)>> GetVazaoIntervaloAPI(DateTime dataHoraInicial, DateTime dataHoraFinal, string entidade)
         {
             string dataInicialFormatada = dataHoraInicial.AddHours(3).ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
             string dataFinalFormatada = dataHoraFinal.AddHours(3).ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
 
-            string apiUrl = $"http://46.17.108.131:8666/STH/v1/contextEntities/type/Flux/id/urn:ngsi-ld:Flux:021/attributes/flux?dateFrom={dataInicialFormatada}&dateTo={dataFinalFormatada}&hLimit=100&hOffset=0";
+            string apiUrl = $"http://46.17.108.131:8666/STH/v1/contextEntities/type/Flux/id/urn:ngsi-ld:{entidade}/attributes/flux?dateFrom={dataInicialFormatada}&dateTo={dataFinalFormatada}&hLimit=100&hOffset=0";
 
             using (HttpClient client = new HttpClient())
             {
@@ -160,6 +164,21 @@ namespace StarFlux.Controllers
                 else
                     throw new Exception("Erro na requisição API.");
             }
+        }
+
+        private void PreparaListaApartamentosParaCombo()
+        {
+            ApartamentoDAO apartamentoDAO = new ApartamentoDAO();
+            var apartamentos = apartamentoDAO.ListagemApartamentosSensores();
+            List<SelectListItem> lista = new List<SelectListItem>();
+
+            foreach (var apartamento in apartamentos)
+            {
+                SelectListItem item = new SelectListItem(apartamento.Nome, apartamento.EntidadeSensor);
+                lista.Add(item);
+            }
+
+            ViewBag.ApartamentosSensores = lista;
         }
 
         private void PreencheViewBag()

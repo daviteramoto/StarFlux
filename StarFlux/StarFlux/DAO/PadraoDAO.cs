@@ -65,11 +65,8 @@ namespace StarFlux.DAO
 
         public virtual List<T> Listagem()
         {
-            SqlParameter[] p = null;/*new SqlParameter[]
-            {
-                new SqlParameter("tabela", Tabela),
-                new SqlParameter("Ordem", "1") // 1 é o primeiro campo da tabela
-            };*/
+            SqlParameter[] p = null;
+
             var tabela = HelperDAO.ExecutaProcSelect(NomeSpListagem, p);
             List<T> lista = new List<T>();
             foreach (DataRow registro in tabela.Rows)

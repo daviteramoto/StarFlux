@@ -23,6 +23,11 @@
             <br />
             <input type="time" id="horaFinal" class="form-control" />
         </div>
+        <div class="col-lg-3">
+            Apartamento <br />
+            <select id="entidadeA" class="form-control" asp-items="@ViewBag.ApartamentosSensores"></select>
+        </div>
+
         <div class="col-lg-1">
             <br />
             <input type="button" id="btnFiltro" class="btn btn-info" value="Aplicar"
@@ -59,6 +64,7 @@
         var dataFinal = document.getElementById("dataFinal").value;
         var horaInicial = document.getElementById("horaInicial").value;
         var horaFinal = document.getElementById("horaFinal").value;
+        var entidadeA = document.getElementById("entidadeA").value;
 
         $.ajax({
             url: '/Dashboard/GetVazaoIntervalo',
@@ -66,7 +72,8 @@
                 dataInicial: dataInicial,
                 dataFinal: dataFinal,
                 horaInicial: horaInicial,
-                horaFinal: horaFinal
+                horaFinal: horaFinal,
+                entidade: entidadeA
             },
             type: 'GET',
             success: function (data) {
