@@ -38,6 +38,9 @@ namespace StarFlux.Controllers
 
             if (string.IsNullOrEmpty(model.Nome))
                 ModelState.AddModelError("Nome", "Preencha o nome.");
+
+            if (model.ID_Torre == 0)
+                ModelState.AddModelError("ID_Torre", "Selecione a torre.");
         }
 
         protected override void PreencheDadosParaView(string Operacao, ApartamentoViewModel model)

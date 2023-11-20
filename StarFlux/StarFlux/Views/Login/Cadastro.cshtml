@@ -29,8 +29,8 @@
             <span asp-validation-for="Senha" class="text-danger"></span>
             <br />
 
-            <label for="Administrador" class="control-label">Administrador?</label>
-            <select asp-for="Administrador" class="form-control">
+            <label for="Administrador" class="control-label" hidden >Administrador?</label>
+            <select asp-for="Administrador" class="form-control" hidden >
                 <option value="false">Não</option>
                 <option value="true">Sim</option>
             </select>

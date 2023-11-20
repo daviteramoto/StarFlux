@@ -12,15 +12,13 @@ namespace StarFlux.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.Logado = HelperControllers.VerificaUsuarioLogado(HttpContext.Session);
-            ViewBag.Administrador = HelperControllers.VerificaUsuarioAdministrador(HttpContext.Session);
+            PreencheViewBag();
             return View();
         }
 
         public IActionResult Filtros()
         {
-            ViewBag.Logado = HelperControllers.VerificaUsuarioLogado(HttpContext.Session);
-            ViewBag.Administrador = HelperControllers.VerificaUsuarioAdministrador(HttpContext.Session);
+            PreencheViewBag();
             return View();
         }
 
@@ -29,12 +27,12 @@ namespace StarFlux.Controllers
         {
             try
             {
-                float vazao = await GetVazaoAPI();
+                var dados = await GetVazaoAPI();
 
                 var data = new
                 {
-                    Timestamp = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
-                    Vazao = vazao
+                    Timestamp = dados.timestamp.AddHours(-3).ToString("dd/MM/yyyy HH:mm:ss"),
+                    Vazao = dados.vazao
                 };
 
                 return Json(data);
@@ -50,7 +48,7 @@ namespace StarFlux.Controllers
             }
         }
 
-        private async Task<float> GetVazaoAPI()
+        private async Task<(float vazao, DateTime timestamp)> GetVazaoAPI()
         {
             string apiUrl = "http://46.17.108.131:1026/v2/entities/urn:ngsi-ld:Flux:021/attrs/flux";
 
@@ -68,8 +66,9 @@ namespace StarFlux.Controllers
 
                     JObject jsonObject = JObject.Parse(jsonContent);
                     float vazao = jsonObject["value"].Value<float>();
-                    
-                    return vazao;
+                    DateTime timestamp = jsonObject["metadata"]["TimeInstant"]["value"].Value<DateTime>();
+
+                    return (vazao, timestamp);
                 }
                 else
                     throw new Exception("Erro na requisição API.");
@@ -77,15 +76,30 @@ namespace StarFlux.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetVazaoIntervalo()
+        public async Task<JsonResult> GetVazaoIntervalo(DateTime dataInicial, DateTime dataFinal, TimeSpan horaInicial, TimeSpan horaFinal)
         {
             try
             {
-                var valores = await GetVazaoIntervaloAPI();
+                if (dataInicial == DateTime.MinValue)
+                {
+                    dataInicial = DateTime.Now.AddMinutes(-60).Date;
+                    horaInicial = DateTime.Now.AddMinutes(-60).TimeOfDay;
+                }
+
+                if (dataFinal == DateTime.MinValue)
+                {
+                    dataFinal = DateTime.Now.Date;
+                    horaFinal = DateTime.Now.TimeOfDay;
+                }
+
+                DateTime dataHoraInicial = dataInicial.Date.Add(horaInicial);
+                DateTime dataHoraFinal = dataFinal.Date.Add(horaFinal);
+
+                var valores = await GetVazaoIntervaloAPI(dataHoraInicial, dataHoraFinal);
 
                 var data = valores.Select(valor => new
                 {
-                    Timestamp = valor.timestamp.ToString("dd/MM/yyyy HH:mm:ss"),
+                    Timestamp = valor.timestamp.AddHours(-3).ToString("dd/MM/yyyy HH:mm:ss"),
                     Vazao = valor.vazao
                 }).ToList();
 
@@ -102,9 +116,12 @@ namespace StarFlux.Controllers
             }
         }
 
-        private async Task<List<(float vazao, DateTime timestamp)>> GetVazaoIntervaloAPI()
+        private async Task<List<(float vazao, DateTime timestamp)>> GetVazaoIntervaloAPI(DateTime dataHoraInicial, DateTime dataHoraFinal)
         {
-            string apiUrl = "http://46.17.108.131:8666/STH/v1/contextEntities/type/Flux/id/urn:ngsi-ld:Flux:021/attributes/flux?dateFrom=2023-11-19T20:00:00.000Z&dateTo=2023-11-19T20:30:00.000Z&hLimit=100&hOffset=0";
+            string dataInicialFormatada = dataHoraInicial.AddHours(3).ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+            string dataFinalFormatada = dataHoraFinal.AddHours(3).ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+
+            string apiUrl = $"http://46.17.108.131:8666/STH/v1/contextEntities/type/Flux/id/urn:ngsi-ld:Flux:021/attributes/flux?dateFrom={dataInicialFormatada}&dateTo={dataFinalFormatada}&hLimit=100&hOffset=0";
 
             using (HttpClient client = new HttpClient())
             {
@@ -143,6 +160,12 @@ namespace StarFlux.Controllers
                 else
                     throw new Exception("Erro na requisição API.");
             }
+        }
+
+        private void PreencheViewBag()
+        {
+            ViewBag.Logado = HelperControllers.VerificaUsuarioLogado(HttpContext.Session);
+            ViewBag.Administrador = HelperControllers.VerificaUsuarioAdministrador(HttpContext.Session);
         }
     }
 }

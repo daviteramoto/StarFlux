@@ -4,7 +4,7 @@
 
 <br />
 
-<fieldset id="areaFiltro" class="form-group">
+<fieldset id="areaFiltro" class="form-group" onload="buscaChart()">
     <legend>Filtros</legend>
     <div class="row">
         <div class="col-lg-2">
@@ -55,8 +55,19 @@
     });
 
     function buscaChart() {
+        var dataInicial = document.getElementById("dataInicial").value;
+        var dataFinal = document.getElementById("dataFinal").value;
+        var horaInicial = document.getElementById("horaInicial").value;
+        var horaFinal = document.getElementById("horaFinal").value;
+
         $.ajax({
             url: '/Dashboard/GetVazaoIntervalo',
+            data: {
+                dataInicial: dataInicial,
+                dataFinal: dataFinal,
+                horaInicial: horaInicial,
+                horaFinal: horaFinal
+            },
             type: 'GET',
             success: function (data) {
                 var timestamps = data.map(entry => entry.timestamp);

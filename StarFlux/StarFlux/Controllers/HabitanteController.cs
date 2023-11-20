@@ -52,6 +52,12 @@ namespace StarFlux.Controllers
             if (string.IsNullOrEmpty(model.Nome))
                 ModelState.AddModelError("Nome", "Preencha o nome.");
 
+            if (model.DataNascimento == Convert.ToDateTime("01/01/0001"))
+                ModelState.AddModelError("DataNascimento", "Selecione uma data de nascimento válida.");
+
+            if (model.ID_Apartamento == 0)
+                ModelState.AddModelError("ID_Apartamento", "Selecione um apartamento.");
+
             if (model.Foto == null && operacao == "I")
                 ModelState.AddModelError("Foto", "Anexe uma foto.");
 
