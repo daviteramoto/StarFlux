@@ -1,0 +1,38 @@
+﻿@model List<SensorViewModel>
+@{
+    ViewData["Title"] = "Sensores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body onload="buscaSensores()">
+    <fieldset id="areaFiltroSensores" class="form-group">
+        <legend>Sensores</legend>
+        <div class="row">
+            <div class="col-lg-1">
+                Código <br />
+                <input type="text" id="codigoSensor" class="form-control" />
+            </div>
+            <div class="col-lg-4">
+                Nome <br />
+                <input type="text" id="nomeSensor" class="form-control" />
+            </div>
+            <div class="col-lg-4">
+                Entidade <br />
+                <input type="text" id="entidadeSensor" class="form-control" />
+            </div>
+            <div class="col-lg-1">
+                <br />
+                <input type="button" id="btnFiltroSensores" class="btn btn-info" value="Aplicar"
+                       onclick="buscaSensores()" />
+            </div>
+        </div>
+    </fieldset>
+
+    <br />
+    <a href="/Sensor/Create" class="btn btn-info">Novo registro</a>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div id="resultadoConsultaSensores" class="table-responsive"></div>
+</body>

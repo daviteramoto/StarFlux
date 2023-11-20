@@ -34,6 +34,11 @@
             <span asp-validation-for="ID_Torre" class="text-danger"></span>
             <br />
 
+            <label for="ID_Sensor" class="control-label">Sensor</label>
+            <select asp-for="ID_Sensor" asp-items="ViewBag.Sensores" class="form-control"> </select>
+            <span asp-validation-for="ID_Sensor" class="text-danger"></span>
+            <br />
+
             <br />
             <input type="submit" value="Salvar dados" class="btn btn-info" />
             <br />

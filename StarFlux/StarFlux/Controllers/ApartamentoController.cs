@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
-using System.IO;
 using StarFlux.DAO;
 using StarFlux.Models;
 
@@ -24,6 +22,7 @@ namespace StarFlux.Controllers
             try
             {
                 PreparaListaTorresParaCombo();
+                PreparaListaSensoresParaCombo();
                 return View(NomeViewIndex);
             }
             catch (Exception erro) 
@@ -41,6 +40,9 @@ namespace StarFlux.Controllers
 
             if (model.ID_Torre == 0)
                 ModelState.AddModelError("ID_Torre", "Selecione a torre.");
+
+            if (model.ID_Sensor == 0)
+                ModelState.AddModelError("ID_Sensor", "Selecione o sensor.");
         }
 
         protected override void PreencheDadosParaView(string Operacao, ApartamentoViewModel model)
@@ -50,6 +52,7 @@ namespace StarFlux.Controllers
                 model.DataCadastro = DateTime.Now;
 
             PreparaListaTorresParaCombo();
+            PreparaListaSensoresParaCombo();
         }
 
         private void PreparaListaTorresParaCombo()
@@ -68,12 +71,29 @@ namespace StarFlux.Controllers
             ViewBag.Torres = listaTorres;
         }
 
+        private void PreparaListaSensoresParaCombo()
+        {
+            SensorDAO sensorDAO = new SensorDAO();
+            var sensores = sensorDAO.Listagem();
+            List<SelectListItem> listaSensores = new List<SelectListItem>();
+            listaSensores.Add(new SelectListItem("Selecione um sensor...", "0"));
+
+            foreach (var sensor in sensores)
+            {
+                SelectListItem item = new SelectListItem(sensor.Nome, sensor.ID.ToString());
+                listaSensores.Add(item);
+            }
+
+            ViewBag.Sensores = listaSensores;
+        }
+
         public IActionResult BuscaApartamentos(
             int codigo,
             string nome,
             DateTime dataInicial,
             DateTime dataFinal,
-            int torre)
+            int torre,
+            int sensor)
         {
             try
             {
@@ -87,7 +107,7 @@ namespace StarFlux.Controllers
                     dataFinal = SqlDateTime.MaxValue.Value;
 
                 var lista = dao.BuscaApartamentosFiltro(codigo, nome, dataInicial, dataFinal,
-                    torre);
+                    torre, sensor);
 
                 return PartialView("pvGridApartamentos", lista);
             }
