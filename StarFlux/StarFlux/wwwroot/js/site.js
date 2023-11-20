@@ -79,6 +79,7 @@ function buscaApartamentos() {
     var dataInicial = document.getElementById("dataInicial").value;
     var dataFinal = document.getElementById("dataFinal").value;
     var torre = document.getElementById("torre").value;
+    var sensor= document.getElementById("sensor").value;
 
     $.ajax({
         url: "/Apartamento/BuscaApartamentos",
@@ -87,7 +88,8 @@ function buscaApartamentos() {
             nome: nome,
             dataInicial: dataInicial,
             dataFinal: dataFinal,
-            torre: torre
+            torre: torre,
+            sensor: sensor
         },
         success: function (dados) {
             if (dados.erro != undefined) {
@@ -151,6 +153,56 @@ function buscaHabitantes() {
             }
             else {
                 document.getElementById("resultadoConsultaHabitantes").innerHTML = dados;
+            }
+        }
+    })
+}
+
+function apagarSensor(id) {
+    Swal.fire({
+        title: "Confirmação",
+        text: "Deseja realmente excluir o sensor?",
+        icon: "warning",
+        iconColor: "#1693a5",
+        showCancelButton: true,
+        confirmButtonColor: "#1693a5",
+        cancelButtonColor: "#7ececa",
+        confirmButtonText: "Sim, excluir!",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Sensor Deletado!",
+                text: "O sensor foi deletado com sucesso.",
+                icon: "success",
+                iconColor: "#1693a5"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = 'sensor/Delete?id=' + id;
+                }
+            });
+        }
+    });
+}
+
+function buscaSensores() {
+    var codigoSensor = document.getElementById("codigoSensor").value;
+    var nomeSensor = document.getElementById("nomeSensor").value;
+    var entidadeSensor = document.getElementById("entidadeSensor").value;
+
+    $.ajax({
+        url: "/Sensor/BuscaSensores",
+        data: {
+            codigo: codigoSensor,
+            nome: nomeSensor,
+            entidade: entidadeSensor
+        },
+        success: function (dados) {
+            if (dados.erro != undefined) {
+                alert(dados.msg);
+            }
+            else {
+                document.getElementById("resultadoConsultaSensores").innerHTML = dados;
             }
         }
     })

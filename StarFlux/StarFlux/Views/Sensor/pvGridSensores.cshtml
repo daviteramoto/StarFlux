@@ -1,0 +1,23 @@
+﻿@model List<SensorViewModel>
+
+<table class="table table-striped">
+    <tr>
+        <th>Ações</th>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Entidade</th>
+    </tr>
+
+    @foreach (SensorViewModel sensor in Model)
+    {
+        <tr>
+            <td>
+                <a href="/sensor/edit?id=@sensor.ID"><img width="20" src="~/img/edit.png" /></a>
+                <a href="javascript:apagarSensor(@sensor.ID)"><img width="20" src="~/img/delete.png" /></a>
+            </td>
+            <td>@sensor.ID</td>
+            <td>@sensor.Nome</td>
+            <td>@sensor.Entidade</td>
+        </tr>
+    }
+</table>

@@ -7,7 +7,9 @@ namespace StarFlux.Models
         public string Nome { get; set; }
         public DateTime DataCadastro { get; set; }
         public int ID_Torre { get; set; }
+        public int ID_Sensor { get; set; }
 
         public string NomeTorre { get; set; }
+        public string NomeSensor { get; set; }
     }
 }

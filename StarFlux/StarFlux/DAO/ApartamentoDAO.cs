@@ -10,11 +10,12 @@ namespace StarFlux.DAO
     {
         protected override SqlParameter[] CriaParametros(ApartamentoViewModel model)
         {
-            SqlParameter[] p = new SqlParameter[4];
+            SqlParameter[] p = new SqlParameter[5];
             p[0] = new SqlParameter("id", model.ID);
             p[1] = new SqlParameter("nome", model.Nome);
             p[2] = new SqlParameter("dataCadastro", model.DataCadastro);
             p[3] = new SqlParameter("idTorre", model.ID_Torre);
+            p[4] = new SqlParameter("idSensor", model.ID_Sensor);
             return p;
         }
 
@@ -25,9 +26,13 @@ namespace StarFlux.DAO
             u.Nome = registro["Nome"].ToString();
             u.DataCadastro = Convert.ToDateTime(registro["dataCadastro"]);
             u.ID_Torre = Convert.ToInt32(registro["ID_Torre"]);
+            u.ID_Sensor = Convert.ToInt32(registro["ID_Sensor"]);
 
             if (registro.Table.Columns.Contains("nomeTorre"))
                 u.NomeTorre = registro["nomeTorre"].ToString();
+
+            if (registro.Table.Columns.Contains("nomeSensor"))
+                u.NomeSensor = registro["nomeSensor"].ToString();
 
             return u;
         }
@@ -43,7 +48,8 @@ namespace StarFlux.DAO
             string nome,
             DateTime dataInicial,
             DateTime dataFinal,
-            int torre)
+            int torre,
+            int sensor)
         {
             SqlParameter[] p =
             {
@@ -51,7 +57,8 @@ namespace StarFlux.DAO
                 new SqlParameter("nome", nome),
                 new SqlParameter("dataInicial", dataInicial),
                 new SqlParameter("dataFinal", dataFinal),
-                new SqlParameter("idTorre", torre)
+                new SqlParameter("idTorre", torre),
+                new SqlParameter("idSensor", sensor)
             };
 
             var tabela = HelperDAO.ExecutaProcSelect("spListagemApartamentosFiltro", p);

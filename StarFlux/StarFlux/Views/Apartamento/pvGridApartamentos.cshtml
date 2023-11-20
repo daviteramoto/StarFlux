@@ -7,6 +7,7 @@
         <th>Nome</th>
         <th>Data de cadastro</th>
         <th>Torre</th>
+        <th>Sensor</th>
     </tr>
 
     @foreach (ApartamentoViewModel apartamento in Model)
@@ -20,6 +21,7 @@
             <td>@apartamento.Nome</td>
             <td>@apartamento.DataCadastro.ToShortDateString()</td>
             <td>@apartamento.NomeTorre</td>
+            <td>@apartamento.NomeSensor</td>
         </tr>
     }
 </table>
