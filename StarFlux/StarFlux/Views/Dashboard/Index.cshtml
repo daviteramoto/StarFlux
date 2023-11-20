@@ -1,12 +1,16 @@
-﻿<body class="text-center">
-    <h1>Dashboard de Vazão de Água</h1>
+﻿@{
+    ViewData["Title"] = "Vazão em Tempo Real";
+}
+
+<body class="text-center">
+    <h1>Vazão de Água em Tempo Real</h1>
+    <br />
+
+    <div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
+        <canvas id="vazaoChart" width="400" height="200"></canvas>
+    </div>
 </body>
 
-<br />
-
-<div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
-    <canvas id="vazaoChart" width="400" height="200"></canvas>
-</div>
 
 <script>
     $(document).ready(function () {

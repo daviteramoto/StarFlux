@@ -5,7 +5,7 @@
 }
 
 <body class="text-center">
-    <h1>Cadastro de Torres</h1>
+    <h2>Cadastro de Torres</h2>
     <br />
     <br />
     <div class="row justify-content-center">
@@ -13,18 +13,20 @@
 
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
-            <label for="Id" class="control-label">ID</label>
-            <input asp-for="ID" class="form-control" readonly />
+            <label for="Id" class="control-label">Código:</label>
+            <input asp-for="ID" class="form-control text-center" readonly />
 
             <span asp-validation-for="ID" class="text-danger"></span>
             <br />
 
-            <label for="Nome" class="control-label">Nome da torre</label>
-            <input asp-for="Nome" class="form-control" />
+            <label for="Nome" class="control-label">Nome da Torre:</label>
+            <input asp-for="Nome" class="form-control text-center" />
             <span asp-validation-for="Nome" class="text-danger"></span>
-            <br />
 
             <br />
+            <br />
+            <a href="/Torre" class="btn btn-info" style="background-color: #08626f !important; border-color: #08626f !important ">Voltar</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" value="Salvar dados" class="btn btn-info" />
             <br />
         </form>
