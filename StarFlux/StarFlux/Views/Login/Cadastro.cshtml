@@ -5,7 +5,7 @@
 }
 
 <body class="text-center">
-    <h1>Cadastro de Usuários</h1>
+    <h2>Cadastro de Usuários</h2>
     <br />
     <br />
     <div class="row justify-content-center">
@@ -13,32 +13,34 @@
 
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
-            <label for="Id" class="control-label">ID</label>
-            <input asp-for="ID" class="form-control" readonly />
+            <label for="Id" class="control-label">Código:</label>
+            <input asp-for="ID" class="form-control text-center" readonly />
 
             <span asp-validation-for="ID" class="text-danger"></span>
             <br />
 
-            <label for="Login" class="control-label">Login</label>
-            <input asp-for="Login" required class="form-control" />
+            <label for="Login" class="control-label">Login:</label>
+            <input asp-for="Login" required class="form-control text-center" />
             <span asp-validation-for="Login" class="text-danger"></span>
             <br />
 
-            <label for="Senha" class="control-label">Senha</label>
-            <input type="password" asp-for="Senha" required class="form-control" />
+            <label for="Senha" class="control-label">Senha:</label>
+            <input type="password" asp-for="Senha" required class="form-control text-center" />
             <span asp-validation-for="Senha" class="text-danger"></span>
             <br />
 
-            <label for="Administrador" class="control-label" hidden >Administrador?</label>
-            <select asp-for="Administrador" class="form-control" hidden >
+            <label for="Administrador" class="control-label" hidden>Administrador?</label>
+            <select asp-for="Administrador" class="form-control" hidden>
                 <option value="false">Não</option>
                 <option value="true">Sim</option>
             </select>
             <span asp-validation-for="Administrador" class="text-danger"></span>
-            <br />
 
             <br />
-            <input type="submit" value="Salvar dados" class="btn btn-info" />
+            <br />
+            <a href="/Login" class="btn btn-info" style="background-color: #08626f !important; border-color: #08626f !important ">Voltar</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit" value="Salvar" class="btn btn-info" />
             <br />
         </form>
     </div>

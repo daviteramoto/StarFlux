@@ -11,16 +11,7 @@
         cancelButtonText: "Cancelar",
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                title: "Torre Deletada!",
-                text: "A torre foi deletada com sucesso.",
-                icon: "success",
-                iconColor: "#1693a5"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = 'torre/Delete?id=' + id;
-                }
-            });
+            location.href = 'torre/Delete?id=' + id;
         }
     });
 }
@@ -59,16 +50,7 @@ function apagarApartamento(id) {
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                title: "Apartamento Deletado!",
-                text: "O apartamento foi deletado com sucesso.",
-                icon: "success",
-                iconColor: "#1693a5"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = 'apartamento/Delete?id=' + id;
-                }
-            });
+            location.href = 'apartamento/Delete?id=' + id;
         }
     });
 }
@@ -115,16 +97,7 @@ function apagarHabitante(id) {
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                title: "Habitante Deletado!",
-                text: "O habitante foi deletado com sucesso.",
-                icon: "success",
-                iconColor: "#1693a5"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = 'habitante/Delete?id=' + id;
-                }
-            });
+            location.href = 'habitante/Delete?id=' + id;
         }
     });
 }
@@ -171,16 +144,7 @@ function apagarSensor(id) {
         cancelButtonText: "Cancelar",
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                title: "Sensor Deletado!",
-                text: "O sensor foi deletado com sucesso.",
-                icon: "success",
-                iconColor: "#1693a5"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = 'sensor/Delete?id=' + id;
-                }
-            });
+            location.href = 'sensor/Delete?id=' + id;
         }
     });
 }

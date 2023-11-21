@@ -12,18 +12,18 @@
         <div class="col-lg-3">
             <form action="/login/Fazlogin" method="post" class="mx-auto">
                 <label for="login" class="control-label">Usuário</label>
-                <input type="text" name="login" class="form-control" required placeholder='Usuário...' />
+                <input type="text" name="login" class="form-control text-center" required placeholder='Usuário...' />
                 <br />
                 <label for="senha" class="control-label">Senha</label>
-                <input type="password" name="senha" class="form-control" required placeholder='Senha...' />
+                <input type="password" name="senha" class="form-control text-center" required placeholder='Senha...' />
                 <br />
                 <br />
-                <input type="submit" value="Login" class="btn btn-info" />
+                <input type="submit" value="Login" class="btn btn-info" style="background-color: #08626f !important; border-color: #08626f !important" />
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/Login/Create" class="btn btn-info">Novo registro</a>
                 <br />
                 <span class="text-danger"> @ViewBag.Erro</span>
             </form>
-            <br />
-            <a href="/Login/Create" class="btn btn-info">Novo registro</a>
         </div>
     </div>
 </body>

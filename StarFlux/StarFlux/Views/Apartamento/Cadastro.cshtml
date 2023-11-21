@@ -34,16 +34,15 @@
             <span asp-validation-for="ID_Torre" class="text-danger"></span>
             <br />
 
-            <label for="ID_Sensor" class="control-label">Sensor</label>
-            <select asp-for="ID_Sensor" asp-items="ViewBag.Sensores" class="form-control"> </select>
+            <label for="ID_Sensor" class="control-label">Sensor:</label>
+            <select asp-for="ID_Sensor" asp-items="ViewBag.Sensores" class="form-control text-center"> </select>
             <span asp-validation-for="ID_Sensor" class="text-danger"></span>
-            <br />
 
             <br />
             <br />
             <a href="/Apartamento" class="btn btn-info" style="background-color: #08626f !important; border-color: #08626f !important ">Voltar</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="submit" value="Salvar dados" class="btn btn-info" />
+            <input type="submit" value="Salvar" class="btn btn-info" />
             <br />
         </form>
     </div>

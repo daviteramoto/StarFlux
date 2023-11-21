@@ -6,12 +6,14 @@
     <h1>Vazão de Água em Tempo Real</h1>
     <br />
 
-    <div class="col-lg-3">
-        Apartamento <br />
-        <select id="entidade" class="form-control" asp-items="@ViewBag.ApartamentosSensores"></select>
+    <div class="row justify-content-center">
+
+        <h3>Selecione um apartamento:</h3>
+        <div class="col-lg-2">
+            <select id="entidade" class="form-control text-center" asp-items="@ViewBag.ApartamentosSensores"></select>
+        </div>
     </div>
 
-    <br />
     <br />
 
     <div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
