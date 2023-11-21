@@ -3,10 +3,28 @@
     ViewData["Title"] = "Erro";
 }
 
-<h1 class="text-danger">Oops</h1>
-<h2 class="text-danger">Ocorreu um erro durante o processamento da sua requisição.</h2>
+<style>
+    img {
+        width: 75%;
+        max-width: 75%;
+        height: auto;
+        border-radius: 8%;
+    }
+</style>
+
+<h1 class="text-danger text-center">Oops</h1>
+<h2 class="text-danger text-center">Ocorreu um erro e agora você está no meio de diversos flamingos confusos...</h2>
+<div class="row justify-content-center">
+    <img class="" src="/img/error.gif" alt="flamingo" />
+</div>
+
 <br />
-<a href="/Home/Index">Voltar para a página inicial</a>
+<br />
+
+<div class="row justify-content-center">
+    <a href="/Home/Index" class="btn btn-info" style="background-color: #08626f !important; border-color: #08626f !important ">Fugir dos Flamingos!!</a>
+</div>
+
 <br />
 <code class="text-danger">
     @Model.Erro
