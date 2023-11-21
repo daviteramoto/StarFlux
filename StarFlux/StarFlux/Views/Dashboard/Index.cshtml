@@ -6,17 +6,18 @@
     <h1>Vazão de Água em Tempo Real</h1>
     <br />
 
-<div class="col-lg-3">
-    Apartamento <br />
-    <select id="entidade" class="form-control" asp-items="@ViewBag.ApartamentosSensores"></select>
-</div>
+    <div class="col-lg-3">
+        Apartamento <br />
+        <select id="entidade" class="form-control" asp-items="@ViewBag.ApartamentosSensores"></select>
+    </div>
 
-<br />
-<br />
+    <br />
+    <br />
 
-<div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
-    <canvas id="vazaoChart" width="400" height="200"></canvas>
-</div>
+    <div id="vazaoContainer" style="background-color: #c7ede8; border-radius: 20px">
+        <canvas id="vazaoChart" width="400" height="200"></canvas>
+    </div>
+</body>
 
 <script>
     $(document).ready(function () {
