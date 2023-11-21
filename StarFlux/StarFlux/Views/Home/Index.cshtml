@@ -2,49 +2,92 @@
     ViewData["Title"] = "Tela Inicial";
 }
 
+<style>
+    .vertical-line-first {
+        border-left: 2px solid #101726 !important;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -10px;
+        transform: translateX(-50%);
+    }
+
+    .vertical-line-second {
+        border-left: 2px solid #101726 !important;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 370px;
+        transform: translateX(-50%);
+    }
+</style>
+
 <body>
     <div class="text-center">
         <img src="/img/logo.png" class="logo" alt="Logo da Empresa">
 
-        <h3 style="color: #101726 !important"><b>Desvende o fluxo da vida, estrela por estrela, controlando cada gota de um futuro consciente</b></h3>
+        <h4 style="color: #101726 !important"><u>Desvende o fluxo da vida, estrela por estrela, controlando cada gota de um futuro consciente!</u></h4>
     </div>
     <br />
     <br />
     <br />
+    <hr style="border-top: 1px solid #101726 !important" />
+    <br />
+    <br />
     <section class="features">
-        <div class="row">
-            <div class="col-md-4">
-                <h4 style="color: #101726 !important">Recursos Principais:</h4>
-                <br />
-                <p style="color: #1693a5 !important">Sistema completo para cadastro e consulta de habitantes, apartamentos e torres para prédios residenciais e comerciais.</p>
-                <p style="color: #1693a5 !important">Dashboards precisos e completos para monitoramento da vazão em L/min.</p>
-                <p style="color: #1693a5 !important">Cadastro de Logins para gerenciamento administrativo.</p>
-                <p style="color: #1693a5 !important">Layout interativo e sistema atualizado regularmente.</p>
-            </div>
-            <div class="col-md-4">
-                <h4 style="color: #101726 !important">Depoimentos de Clientes:</h4>
-                <br />
-                <p style="color: #1693a5 !important">"A StarFlux revolucionou nossa gestão de água. Excelente serviço!" - Cliente Satisfeito</p>
-                <p style="color: #1693a5 !important">"Eficiência e transparência são as marcas da StarFlux. Recomendo!" - Parceiro de Negócios</p>
-                <p style="color: #1693a5 !important">"Nosso condomínio viu uma redução notável no desperdício de água desde que implementamos o sistema da StarFlux." - Síndico</p>
-                <p style="color: #1693a5 !important">"A StarFlux oferece soluções inovadoras que realmente fazem a diferença no controle do consumo de água." - Especialista em Sustentabilidade</p>
-                <p style="color: #1693a5 !important">"Estou impressionado com o compromisso da StarFlux em criar um impacto positivo no uso de recursos hídricos." - Ambientalista</p>
-            </div>
-            <div class="col-md-4">
-                <h4 style="color: #101726 !important">Últimas Notícias:</h4>
-                <br />
-                <ul>
-                    <li style="color: #1693a5 !important"><u>Alunos do EC5 se destacam ao apresentar o projeto interdisciplinar proposto pelo corpo docente da FESA!</u></li>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li style="color: #1693a5 !important"><u>Dia 26/11 será realizada a prova do ENADE para os alunos de Engenharia na FESA</u></li>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li style="color: #1693a5 !important"><u>5 motivos para escolher Engenharia da Computação como bacharelado e 50 PARA DESISTIR</u></li>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li style="color: #1693a5 !important"><u>Alunos da FESA são humilhados no torneio de Interclasse pelo Ensino Média da CEFSA (14x0)??</u></li>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li style="color: #1693a5 !important"><u>O consumo de café no Brasil foi significativemente aumentado enquanto este trabalho foi realizado pelo equipe da StarFlux!!</u></li>
-                </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4 style="color: #101726 !important">Recursos Principais:</h4>
+                    <br />
+                    <p style="color: #1693a5 !important">Sistema completo para cadastro e consulta de habitantes, apartamentos e torres para prédios residenciais e comerciais.</p>
+                    <p style="color: #1693a5 !important">Dashboard do consumo de água em tempo real de cada apartamento!</p>
+                    <p style="color: #1693a5 !important">Cadastro de Logins para gerenciamento administrativo.</p>
+                    <p style="color: #1693a5 !important">Layout interativo e sistema atualizado regularmente.</p>
+                    <p style="color: #1693a5 !important">Agora é possível cadastrar um sensor para vizualizar a vazão em L/min do apartamento com filtros através de um novo dashboard!</p>
+                </div>
+
+                <div class="col-md-4 position-relative">
+                    <div class="vertical-line-first"></div>
+                    <h4 style="color: #101726 !important">Depoimentos de Clientes:</h4>
+                    <br />
+                    <p style="color: #1693a5 !important">"A StarFlux revolucionou nossa gestão de água. Excelente serviço!" - Cliente Satisfeito</p>
+                    <p style="color: #1693a5 !important">"Eficiência e transparência são as marcas da StarFlux. Recomendo!" - Parceiro de Negócios</p>
+                    <p style="color: #1693a5 !important">"Nosso condomínio viu uma redução notável no desperdício de água desde que implementamos o sistema da StarFlux." - Síndico</p>
+                    <p style="color: #1693a5 !important">"A StarFlux oferece soluções inovadoras que realmente fazem a diferença no controle do consumo de água." - Especialista em Sustentabilidade</p>
+                    <p style="color: #1693a5 !important">"Estou impressionado com o compromisso da StarFlux em criar um impacto positivo no uso de recursos hídricos." - Ambientalista</p>
+                </div>
+
+                <div class="col-md-4 position-relative">
+                    <div class="vertical-line-second"></div>
+                    <h4 style="color: #101726 !important">Últimas Notícias:</h4>
+                    <br />
+                    <ul style="list-style: square; padding-left: 15px;">
+                        <li style="color: #1693a5;">
+                            <a href="https://guthib.com" target="_blank" style="color: #1693a5 !important"><u>Alunos do EC5 se destacam ao apresentar o projeto interdisciplinar proposto pelo corpo docente da FESA!</u></a>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li style="color: #1693a5;">
+                            <a href="https://guthib.com" target="_blank" style="color: #1693a5 !important"><u>Dia 26/11 será realizada a prova do ENADE para os alunos de Engenharia na FESA</u></a>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li style="color: #1693a5;">
+                            <a href="https://guthib.com" target="_blank" style="color: #1693a5 !important"><u>5 motivos para escolher Engenharia da Computação como bacharelado e 50 PARA DESISTIR</u></a>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li style="color: #1693a5;">
+                            <a href="https://guthib.com" target="_blank" style="color: #1693a5 !important"><u>Alunos da FESA são humilhados no torneio de Interclasse pelo Ensino Média da CEFSA (14x0)??</u></a>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li style="color: #1693a5;">
+                            <a href="https://guthib.com" target="_blank" style="color: #1693a5 !important"><u>O consumo de café no Brasil foi significativemente aumentado enquanto este trabalho foi realizado pela equipe da StarFlux!!</u></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
+    <br />
 </body>
